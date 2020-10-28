@@ -1,0 +1,38 @@
+<header class="header">
+  <span class="navbar-toggle" id="js-navbar-toggle" (click)="showOrHideManually()">
+    <i class="fa fa-bars"></i>
+</span>
+  <h1 class="logo"><a href="#">Tariq Bashir</a></h1>
+     <div id="search">
+      <input type="text" placeholder="Search.." name="search" [(ngModel)]="searchTerm">
+      <button (click)="search()"><i class="fa fa-search"></i></button>
+     </div>
+    <ul class="main-nav" #mainNav >
+      <li *ngIf="isShop"><a routerLink="/home">Home</a></li>
+      <li *ngIf="isShop && isLogedIn"><a routerLink="/shop/categories">categories</a></li>
+      <li><a routerLink="/shop">Shop</a></li>
+      <li *ngIf="isShop"><a routerLink="/shop/cart">
+      <i class="fa fa-shopping-cart mr-1"></i>
+      Cart
+      <span *ngIf="dataService.cartItems_quantity >0" class="badge badge-warning ml-1">{{dataService.cartItems_quantity}}</span>
+      </a></li>
+      
+    <li *ngIf="isShop">
+    <div class="dropdown" (click)="showOrHideManuallyLinks()">
+        <button  class="dropbtn" >{{user?.local?.email}}
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div #dropdownLinks class="dropdown-content" id="myDropdown">
+          <a *ngIf="!isLogedIn" routerLink="shop/login">Login</a>
+          <a *ngIf="!isLogedIn" routerLink="shop/signup">Singup</a>
+          <a *ngIf="isLogedIn"(click)="onLogout()">Logout</a>
+          <a *ngIf="isLogedIn" routerLink="/shop/profile">Profile</a>
+        </div>
+        </div> 
+    </li>
+
+        <li *ngIf="!isShop"><a href="#">Blog</a></li>
+      <li *ngIf="!isShop"><a href="#">Portfolio</a></li>
+    </ul>
+</header> 
+

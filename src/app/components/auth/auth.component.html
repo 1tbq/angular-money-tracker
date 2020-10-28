@@ -1,0 +1,25 @@
+<div class="wrapper">
+   <div class="login-box">
+         <div class="left-box">
+            <h1>{{title}}</h1>
+            <form [formGroup]="authForm" novalidate (ngSubmit)="onSubmit()">
+               <input *ngIf="title=='Signup'" type="text" class="input-box" placeholder="UserName">
+               <input type="email" class="input-box" placeholder="Email" formControlName="email" name="email">
+               <input type="password" class="input-box" placeholder="Password" name="password" formControlName = "password">
+               <input *ngIf="title=='Signup'" type="password" class="input-box" placeholder="Re-Enter password">
+               <input type="submit"  class="submit-btn" value="{{title}}">             
+            </form>
+            <p *ngIf="title=='Signup'">Or if you already have an account <a routerLink="/shop/login">Login</a></p>
+            <p *ngIf="title=='Login'">Or if you already have an account <a routerLink="/shop/signup">Signup</a></p>
+         </div>
+         <!-- <div class="or">OR</div> -->
+         <div  class="right-box">
+            <span class="right-title">{{title}} with <br> Social Network</span>
+            <button class="social facebook">Login with Facebook</button>
+            <button class="social google">Login with Google</button>
+            <button class="social github">Login with Github</button>
+         </div>
+        
+   </div>   
+
+</div>
